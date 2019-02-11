@@ -1,8 +1,44 @@
 import React from "react";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const Navbar = props => {
+  const NotAuthed = (
+    <React.Fragment>
+      <li className="nav-item">
+        <a className="nav-link" href="#">
+          Register
+        </a>
+      </li>
+
+      <li className="nav-item">
+        <a className="nav-link" href="#">
+          Login
+        </a>
+      </li>
+    </React.Fragment>
+  );
+
+  const Authed = (
+    <React.Fragment>
+      <li className="nav-item active">
+        <a className="nav-link" href="#">
+          DashBoard <span className="sr-only">(current)</span>
+        </a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="#">
+          Logout
+        </a>
+      </li>
+    </React.Fragment>
+  );
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav
+      style={{ padding: "1rem" }}
+      className="navbar navbar-expand-lg navbar-dark bg-primary"
+    >
       <a className="navbar-brand" href="#">
         Photo ShowCase
       </a>
@@ -20,30 +56,22 @@ const Navbar = props => {
 
       <div className="collapse navbar-collapse" id="navbarColor01">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="#">
-              DashBoard <span className="sr-only">(current)</span>
-            </a>
-          </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
               Public
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Login
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Logout
-            </a>
-          </li>
+          {props.auth.isAuthenticate ? Authed : NotAuthed}
         </ul>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
