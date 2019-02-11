@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import Navbar from "./components/navigation/navigation";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>Photo app</h1>
+        <Navbar />
       </div>
     );
   }
