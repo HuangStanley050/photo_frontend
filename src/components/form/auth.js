@@ -1,48 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
+import { register } from "../../store/actions/auth";
 import { connect } from "react-redux";
 
 const AuthForm = props => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const inputHandler = e => {
+    switch (e.target.id) {
+      case "name":
+        setName(e.target.value);
+        break;
+      case "email":
+        setEmail(e.target.value);
+        break;
+      case "password":
+        setPassword(e.target.value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const submitForm = e => {
+    e.preventDefault();
+    //console.log(name, email, password);
+    const userData = {
+      name,
+      email,
+      password
+    };
+    setName("");
+    setEmail("");
+    setPassword("");
+    props.register(userData);
+  };
+
   return (
     <div className="container" style={{ marginTop: "35px" }}>
       <div className="row">
         <div className="col-md-8 m-auto">
-          {props.isRegister ? (
+          <form onSubmit={submitForm}>
+            {props.isRegister ? (
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Name</label>
+                <input
+                  onChange={inputHandler}
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  placeholder="Firstname Lastname"
+                  value={name}
+                />
+              </div>
+            ) : null}
             <div className="form-group">
-              <label for="exampleInputPassword1">Name</label>
+              <label htmlFor="exampleInputEmail1">Email address</label>
               <input
-                type="text"
+                onChange={inputHandler}
+                type="email"
                 className="form-control"
-                id="name"
-                placeholder="Firstname Lastname"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                value={email}
+              />
+              <small id="emailHelp" className="form-text text-muted">
+                We'll never share your email with anyone else.
+              </small>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input
+                onChange={inputHandler}
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Password"
+                value={password}
               />
             </div>
-          ) : null}
-          <div className="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-            />
-          </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     </div>
   );
 };
 
-export default AuthForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    register: userData => dispatch(register(userData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AuthForm);
