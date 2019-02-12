@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "./components/navigation/navigation";
 import { Route, Switch, withRouter } from "react-router-dom";
 import AuthForm from "./components/form/auth";
+import Main from "./components/dashboard/main";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
               <AuthForm {...props} isLogin={true} isRegister={false} />
             )}
           />
+          <Route path="/main" component={Main} />
         </Switch>
       </div>
     );

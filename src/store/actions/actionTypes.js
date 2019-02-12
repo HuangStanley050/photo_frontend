@@ -5,3 +5,8 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+
+export const SET_USER = "SET_USER";
+export const LOAD_IMAGES_START = "LOAD_IMAGES_START";
+export const LOAD_IMAGES_FAIL = "LOAD_IMAGES_FAIL";
+export const LOAD_IMAGES_SUCCESS = "LOAD_IMAGES_SUCCESS";

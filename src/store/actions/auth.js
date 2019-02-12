@@ -42,6 +42,13 @@ const login_success = payload => {
   };
 };
 
+const set_user = userName => {
+  return {
+    type: actionTypes.SET_USER,
+    payload: userName
+  };
+};
+
 //==============async actions===============================//
 
 export const login = userData => {
@@ -55,6 +62,7 @@ export const login = userData => {
         const decoded = jwt_decode(token);
         //console.log(decoded);
         dispatch(login_success(decoded));
+        dispatch(set_user(userName));
       })
       .catch(err => {
         console.log(err);
