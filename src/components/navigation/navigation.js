@@ -36,8 +36,8 @@ const Navbar = props => {
 
   return (
     <nav
-      style={{ padding: "1rem" }}
-      className="navbar navbar-expand-lg navbar-dark bg-primary"
+      style={{ padding: "1rem", backgroundColor: "#0b3c8c" }}
+      className="navbar navbar-expand-lg navbar-dark"
     >
       <a className="navbar-brand" href="#">
         Photo ShowCase
