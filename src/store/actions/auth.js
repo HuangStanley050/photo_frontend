@@ -1,6 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import api_routes from "../../api_routes/routes";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+/*global localStorage */
 
 const register_start = () => {
   return {
@@ -21,6 +23,46 @@ const register_success = payload => {
   };
 };
 
+const login_start = () => {
+  return {
+    type: actionTypes.LOGIN_START
+  };
+};
+
+const login_fail = () => {
+  return {
+    type: actionTypes.LOGIN_FAIL
+  };
+};
+
+const login_success = payload => {
+  return {
+    type: actionTypes.LOGIN_SUCCESS,
+    payload
+  };
+};
+
+//==============async actions===============================//
+
+export const login = userData => {
+  return dispatch => {
+    dispatch(login_start());
+    axios
+      .post(api_routes.login, userData)
+      .then(res => {
+        const { token, userName } = res.data;
+        localStorage.setItem("jwtToken", token);
+        const decoded = jwt_decode(token);
+        //console.log(decoded);
+        dispatch(login_success(decoded));
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch(login_fail());
+      });
+  };
+};
+
 export const register = userData => {
   return dispatch => {
     dispatch(register_start());
@@ -35,5 +77,12 @@ export const register = userData => {
         console.log(err.message);
         dispatch(register_fail());
       });
+  };
+};
+
+export const logout = () => {
+  return dispatch => {
+    localStorage.removeItem("jwtToken");
+    dispatch(login_fail());
   };
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { register } from "../../store/actions/auth";
+import { register, login } from "../../store/actions/auth";
 import { connect } from "react-redux";
 
 const AuthForm = props => {
@@ -26,15 +26,26 @@ const AuthForm = props => {
   const submitForm = e => {
     e.preventDefault();
     //console.log(name, email, password);
-    const userData = {
-      name,
-      email,
-      password
-    };
-    setName("");
-    setEmail("");
-    setPassword("");
-    props.register(userData);
+    if (props.isLogin) {
+      const userData = {
+        email,
+        password
+      };
+
+      props.login(userData);
+      setEmail("");
+      setPassword("");
+    } else {
+      const userData = {
+        name,
+        email,
+        password
+      };
+      setName("");
+      setEmail("");
+      setPassword("");
+      props.register(userData);
+    }
   };
 
   return (
@@ -93,7 +104,8 @@ const AuthForm = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    register: userData => dispatch(register(userData))
+    register: userData => dispatch(register(userData)),
+    login: userData => dispatch(login(userData))
   };
 };
 

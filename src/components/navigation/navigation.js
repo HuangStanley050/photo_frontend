@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../store/actions/auth";
 
 const Navbar = props => {
   const NotAuthed = (
     <React.Fragment>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <NavLink className="nav-link" to="/register">
           Register
-        </a>
+        </NavLink>
       </li>
 
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <NavLink className="nav-link" to="/login">
           Login
-        </a>
+        </NavLink>
       </li>
     </React.Fragment>
   );
@@ -27,7 +28,7 @@ const Navbar = props => {
         </a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <a onClick={props.logout} className="nav-link" href="#">
           Logout
         </a>
       </li>
@@ -74,4 +75,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navbar);
