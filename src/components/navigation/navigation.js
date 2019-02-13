@@ -23,9 +23,9 @@ const Navbar = props => {
   const Authed = (
     <React.Fragment>
       <li className="nav-item active">
-        <a className="nav-link" href="#">
+        <NavLink className="nav-link" to="/main">
           DashBoard <span className="sr-only">(current)</span>
-        </a>
+        </NavLink>
       </li>
       <li className="nav-item">
         <a onClick={props.logout} className="nav-link" href="#">

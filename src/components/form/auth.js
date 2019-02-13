@@ -48,6 +48,9 @@ const AuthForm = props => {
     }
   };
 
+  if (props.auth.isAuthenticate) {
+    props.history.push("/main");
+  }
   return (
     <div className="container" style={{ marginTop: "35px" }}>
       <div className="row">
@@ -109,7 +112,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(AuthForm);

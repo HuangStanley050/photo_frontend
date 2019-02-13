@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { load_images } from "../../store/actions/files";
+import PhotoList from "./photoList";
 
 const Main = props => {
   useEffect(() => {
     props.load();
   }, []);
 
+  if (!props.auth.isAuthenticate) {
+    props.history.push("/login");
+  }
   return (
-    <React.Fragment>
-      <h1>Main Dash</h1>
-      <ul>
-        {props.photos.map(photo => {
-          console.log(photo);
-          return <li key={photo.photoId}>{photo.photoName}</li>;
-        })}
-      </ul>
-    </React.Fragment>
+    <div className="container">
+      <div className="jumbotron">
+        <h1 className="text-center">Main Dash for {props.username}</h1>
+      </div>
+      <PhotoList photos={props.photos} />
+    </div>
   );
 };
 
@@ -28,7 +29,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    photos: state.file.photos
+    photos: state.file.photos,
+    username: state.auth.userInfo.name,
+    auth: state.auth
   };
 };
 

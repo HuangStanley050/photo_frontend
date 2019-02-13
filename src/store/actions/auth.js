@@ -62,7 +62,6 @@ export const login = userData => {
         const decoded = jwt_decode(token);
         //console.log(decoded);
         dispatch(login_success(decoded));
-        dispatch(set_user(userName));
       })
       .catch(err => {
         console.log(err);

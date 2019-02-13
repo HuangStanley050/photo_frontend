@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { connect } from "react-redux";
 import Navbar from "./components/navigation/navigation";
 import { Route, Switch, withRouter } from "react-router-dom";
 import AuthForm from "./components/form/auth";
@@ -30,5 +31,15 @@ class App extends Component {
     );
   }
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     auth: state.auth,
+//     file: state.file,
+//     error: state.error
+//   };
+// };
+
+// export default withRouter(connect(mapStateToProps)(App));
 
 export default App;
