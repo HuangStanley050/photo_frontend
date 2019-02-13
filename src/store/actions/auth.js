@@ -74,7 +74,12 @@ export const login = userData => {
       .catch(err => {
         //console.log(err.response);
         dispatch(login_fail());
-        dispatch(errorMsg(err.response.data.message));
+        const error = {
+          message: err.response.data.message,
+          type: "login"
+        };
+        console.log(error);
+        dispatch(errorMsg(error));
       });
   };
 };
@@ -93,7 +98,11 @@ export const register = userData => {
       .catch(err => {
         console.log(err.message);
         dispatch(register_fail());
-        dispatch(errorMsg(err.response.data.message));
+        const error = {
+          message: err.response.data.message,
+          type: "register"
+        };
+        dispatch(errorMsg(error));
       });
   };
 };

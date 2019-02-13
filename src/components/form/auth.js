@@ -8,13 +8,9 @@ const AuthForm = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    console.log("created");
-    return () => {
-      console.log("clean up");
-      props.clear_error();
-    };
-  }, []);
+  // useEffect(() => {
+  //   props.clear_error();
+  // }, []);
 
   const inputHandler = e => {
     switch (e.target.id) {
@@ -59,13 +55,22 @@ const AuthForm = props => {
 
   let errorMessage = null;
 
-  if (props.errorMsg) {
+  if (props.errorType === "register" && props.isRegister) {
+    //don't show the registration error on login page
     errorMessage = (
       <div>
-        <h3 style={{ color: "red" }}>{props.errorMsg}</h3>
+        <h3 style={{ color: "red" }}>Registration error:{props.errorMsg}</h3>
       </div>
     );
-    console.log(errorMessage);
+  }
+
+  if (props.errorType === "login" && props.isLogin) {
+    //don't show the login error on register page
+    errorMessage = (
+      <div>
+        <h3 style={{ color: "red" }}>Login error:{props.errorMsg}</h3>
+      </div>
+    );
   }
 
   if (props.auth.isAuthenticate) {
@@ -137,7 +142,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    errorMsg: state.error.error
+    errorMsg: state.error.error,
+    errorType: state.error.type
   };
 };
 
