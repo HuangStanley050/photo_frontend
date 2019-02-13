@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { register, login } from "../../store/actions/auth";
 import { connect } from "react-redux";
+import { CLEAR_ERROR } from "../../store/actions/actionTypes";
 
 const AuthForm = props => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    console.log("created");
+    return () => {
+      console.log("clean up");
+      props.clear_error();
+    };
+  }, []);
 
   const inputHandler = e => {
     switch (e.target.id) {
@@ -48,6 +57,17 @@ const AuthForm = props => {
     }
   };
 
+  let errorMessage = null;
+
+  if (props.errorMsg) {
+    errorMessage = (
+      <div>
+        <h3 style={{ color: "red" }}>{props.errorMsg}</h3>
+      </div>
+    );
+    console.log(errorMessage);
+  }
+
   if (props.auth.isAuthenticate) {
     props.history.push("/main");
   }
@@ -84,7 +104,7 @@ const AuthForm = props => {
                 We'll never share your email with anyone else.
               </small>
             </div>
-            <div className="form-group">
+            <div className="form-group has-danger">
               <label htmlFor="exampleInputPassword1">Password</label>
               <input
                 onChange={inputHandler}
@@ -95,6 +115,7 @@ const AuthForm = props => {
                 value={password}
               />
             </div>
+            {errorMessage}
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
@@ -108,13 +129,15 @@ const AuthForm = props => {
 const mapDispatchToProps = dispatch => {
   return {
     register: userData => dispatch(register(userData)),
-    login: userData => dispatch(login(userData))
+    login: userData => dispatch(login(userData)),
+    clear_error: () => dispatch({ type: CLEAR_ERROR })
   };
 };
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    errorMsg: state.error.error
   };
 };
 

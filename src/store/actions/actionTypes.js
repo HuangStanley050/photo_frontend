@@ -10,3 +10,6 @@ export const SET_USER = "SET_USER";
 export const LOAD_IMAGES_START = "LOAD_IMAGES_START";
 export const LOAD_IMAGES_FAIL = "LOAD_IMAGES_FAIL";
 export const LOAD_IMAGES_SUCCESS = "LOAD_IMAGES_SUCCESS";
+
+export const ERROR = "ERROR";
+export const CLEAR_ERROR = "CLEAR_ERROR";

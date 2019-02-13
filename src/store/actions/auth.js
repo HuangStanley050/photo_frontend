@@ -49,6 +49,13 @@ const set_user = userName => {
   };
 };
 
+const errorMsg = error => {
+  return {
+    type: actionTypes.ERROR,
+    payload: error
+  };
+};
+
 //==============async actions===============================//
 
 export const login = userData => {
@@ -62,10 +69,12 @@ export const login = userData => {
         const decoded = jwt_decode(token);
         //console.log(decoded);
         dispatch(login_success(decoded));
+        dispatch({ type: actionTypes.CLEAR_ERROR });
       })
       .catch(err => {
-        console.log(err);
+        //console.log(err.response);
         dispatch(login_fail());
+        dispatch(errorMsg(err.response.data.message));
       });
   };
 };
@@ -79,10 +88,12 @@ export const register = userData => {
       .then(res => {
         console.log(res);
         dispatch(register_success(res.data));
+        dispatch({ type: actionTypes.CLEAR_ERROR });
       })
       .catch(err => {
         console.log(err.message);
         dispatch(register_fail());
+        dispatch(errorMsg(err.response.data.message));
       });
   };
 };
