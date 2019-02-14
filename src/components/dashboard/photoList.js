@@ -6,24 +6,21 @@ import { connect } from "react-redux";
 const PhotoList = props => {
   let content;
 
-  if (props.loadingStatus) {
-    content = <Spinner />;
-  } else {
-    content = (
-      <div className="row">
-        {props.photos.map(photo => {
-          return <Photo key={photo.photoId} name={photo.photoName} />;
-        })}
-      </div>
-    );
-  }
+  content = (
+    <div className="row">
+      {props.photos.map(photo => {
+        return <Photo key={photo.photoId} name={photo.photoName} />;
+      })}
+    </div>
+  );
+
   return content;
 };
 
-const mapStateToProps = state => {
-  return {
-    loadingStatus: state.file.loading
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     loadingStatus: state.file.loading
+//   };
+// };
 
-export default connect(mapStateToProps)(PhotoList);
+export default PhotoList;
