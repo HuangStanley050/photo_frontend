@@ -1,20 +1,29 @@
 import React from "react";
 import Photo from "./photo";
+import Spinner from "../spinner/spinner";
+import { connect } from "react-redux";
 
 const PhotoList = props => {
-  const NoPhotos = <h2>You have not uploded any photos</h2>;
-  const havePhotos = (
-    <div className="row">
-      {props.photos.map(photo => {
-        return <Photo key={photo.photoId} name={photo.photoName} />;
-      })}
-    </div>
-  );
-  if (props.photos.length !== 0) {
-    return havePhotos;
+  let content;
+
+  if (props.loadingStatus) {
+    content = <Spinner />;
   } else {
-    return NoPhotos;
+    content = (
+      <div className="row">
+        {props.photos.map(photo => {
+          return <Photo key={photo.photoId} name={photo.photoName} />;
+        })}
+      </div>
+    );
   }
+  return content;
 };
 
-export default PhotoList;
+const mapStateToProps = state => {
+  return {
+    loadingStatus: state.file.loading
+  };
+};
+
+export default connect(mapStateToProps)(PhotoList);
