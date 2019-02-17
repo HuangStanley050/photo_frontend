@@ -6,7 +6,9 @@ const routes = {
   loadImages:
     "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/user/images",
   loadImage:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/image/"
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/image/",
+  uploadImage:
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/upload"
 };
 
 export default routes;

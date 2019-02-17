@@ -1,11 +1,19 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { upload_image } from "../../store/actions/files";
 
 const UpLoadForm = props => {
   const [fileStore, setFile] = useState(null);
   const fileChangeHandler = e => {
-    console.log("e.target: ", e.target.files[0]);
     setFile(e.target.files[0]);
-    console.log("state: " + fileStore);
+  };
+  const uploadImage = e => {
+    e.preventDefault();
+    const formData = new FormData();
+    //props.upload(fileStore);
+    formData.append("file", fileStore);
+    props.upload(formData);
+    setFile(null);
   };
   return (
     <div className="form-group">
@@ -21,8 +29,21 @@ const UpLoadForm = props => {
         This is some placeholder block-level help text for the above input. It's
         a bit lighter and easily wraps to a new line.
       </small>
+      <br />
+      <button type="submit" class="btn btn-primary" onClick={uploadImage}>
+        Submit
+      </button>
     </div>
   );
 };
 
-export default UpLoadForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    upload: imageData => dispatch(upload_image(imageData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(UpLoadForm);
