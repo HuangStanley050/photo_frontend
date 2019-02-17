@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { load_images } from "../../store/actions/files";
 import PhotoList from "./photoList";
 import Spinner from "../spinner/spinner";
+import UpLoadForm from "../form/upload";
 
 const Main = props => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const Main = props => {
       <div className="jumbotron">
         <h1 className="text-center">Main Dash for {props.username}</h1>
       </div>
+      <UpLoadForm />
       {props.photos.length === 0 ? noPhotos : null}
       {props.loading ? <Spinner /> : <PhotoList photos={props.photos} />}
     </div>
