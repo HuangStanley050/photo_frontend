@@ -30,6 +30,11 @@ const reducer = (state = initialState, action) => {
         loading: false,
         photos: [...state.photos, action.payload]
       };
+    case actionTypes.LOGIN_FAIL:
+      return {
+        ...state,
+        photos: []
+      };
 
     default:
       return state;

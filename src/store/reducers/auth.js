@@ -18,7 +18,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticate: false,
-        loading: false
+        loading: false,
+        userInfo: {}
       };
     case actionTypes.REGISTER_SUCCESS:
       return {
