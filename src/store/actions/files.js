@@ -34,9 +34,10 @@ const upload_image_fail = () => {
   };
 };
 
-const upload_image_success = () => {
+const upload_image_success = imgData => {
   return {
-    type: actionTypes.UPLOAD_IMAGE_SUCCESS
+    type: actionTypes.UPLOAD_IMAGE_SUCCESS,
+    payload: imgData
   };
 };
 
@@ -76,10 +77,12 @@ export const upload_image = imageData => {
       }
     })
       .then(res => {
-        console.log(res);
+        console.log(res.data.photoName);
+        dispatch(upload_image_success(res.data));
       })
       .catch(err => {
         console.log(err);
+        dispatch(upload_image_fail());
       });
   };
 };

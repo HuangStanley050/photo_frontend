@@ -30,7 +30,7 @@ const UpLoadForm = props => {
         a bit lighter and easily wraps to a new line.
       </small>
       <br />
-      <button type="submit" class="btn btn-primary" onClick={uploadImage}>
+      <button type="submit" className="btn btn-primary" onClick={uploadImage}>
         Submit
       </button>
     </div>
