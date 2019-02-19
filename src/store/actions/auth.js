@@ -42,12 +42,12 @@ const login_success = payload => {
   };
 };
 
-const set_user = userName => {
-  return {
-    type: actionTypes.SET_USER,
-    payload: userName
-  };
-};
+// const set_user = userName => {
+//   return {
+//     type: actionTypes.SET_USER,
+//     payload: userName
+//   };
+// };
 
 const errorMsg = error => {
   return {

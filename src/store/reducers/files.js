@@ -8,6 +8,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_IMAGES_START:
+    case actionTypes.UPLOAD_IMAGE:
       return {
         ...state,
         loading: true

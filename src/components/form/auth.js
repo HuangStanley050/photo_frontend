@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { register, login } from "../../store/actions/auth";
 import { connect } from "react-redux";
 import { CLEAR_ERROR } from "../../store/actions/actionTypes";

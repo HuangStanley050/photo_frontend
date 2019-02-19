@@ -41,6 +41,18 @@ const upload_image_success = imgData => {
   };
 };
 
+const make_public_start = () => {
+  return {
+    type: actionTypes.MAKE_PUBLIC_START
+  };
+};
+
+const make_public_fail = () => {
+  return {
+    type: actionTypes.MAKE_PUBLIC_FAIL
+  };
+};
+
 export const load_images = () => {
   return dispatch => {
     dispatch(load_images_start());
@@ -84,5 +96,14 @@ export const upload_image = imageData => {
         console.log(err);
         dispatch(upload_image_fail());
       });
+  };
+};
+
+export const make_public = (photoId, photoName) => {
+  return dispatch => {
+    if (window.confirm("Are you sure? Making photo pubic?")) {
+      console.log(photoId, photoName);
+      dispatch(make_public_start());
+    }
   };
 };

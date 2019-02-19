@@ -1,9 +1,10 @@
 import React from "react";
 import api_routes from "../../api_routes/routes";
+import { connect } from "react-redux";
+import { make_public } from "../../store/actions/files";
 /*global localStorage */
 
 const Photo = props => {
-  //console.log(api_routes.loadImage + props.name);
   return (
     <div className="col-md-3">
       <div className="thumbnail">
@@ -17,8 +18,29 @@ const Photo = props => {
           }
         />
       </div>
+      <button
+        onClick={() => props.publicPhoto(props.id, props.name)}
+        style={{ marginRight: "0.1rem" }}
+        type="button"
+        className="btn btn-primary"
+      >
+        Make Public
+      </button>
+      <button type="button" className="btn btn-danger">
+        Hide
+      </button>
     </div>
   );
 };
 
-export default Photo;
+const mapDispatchToProps = dispatch => {
+  return {
+    publicPhoto: (photoId, photoName) =>
+      dispatch(make_public(photoId, photoName))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Photo);

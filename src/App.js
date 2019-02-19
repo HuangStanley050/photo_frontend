@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import Navbar from "./components/navigation/navigation";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import AuthForm from "./components/form/auth";
 import Main from "./components/dashboard/main";
 
