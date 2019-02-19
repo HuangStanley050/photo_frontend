@@ -53,6 +53,13 @@ const make_public_fail = () => {
   };
 };
 
+const make_public_success = publicPhotos => {
+  return {
+    type: actionTypes.MAKE_PUBLIC_SUCCESS,
+    payload: publicPhotos
+  };
+};
+
 export const load_images = () => {
   return dispatch => {
     dispatch(load_images_start());
@@ -102,8 +109,24 @@ export const upload_image = imageData => {
 export const make_public = (photoId, photoName) => {
   return dispatch => {
     if (window.confirm("Are you sure? Making photo pubic?")) {
-      console.log(photoId, photoName);
+      //console.log(photoId, photoName);
       dispatch(make_public_start());
+      axios({
+        method: "post",
+        url:
+          api_routes.makePublic + `photoId=${photoId}&photoName=${photoName}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.jwtToken
+        }
+      })
+        .then(res => {
+          //console.log(res.data.showCase);
+          dispatch(make_public_success(res.data.showCase));
+        })
+        .catch(err => {
+          console.log(err);
+          dispatch(make_public_fail());
+        });
     }
   };
 };
