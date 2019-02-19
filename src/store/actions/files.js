@@ -60,6 +60,25 @@ const make_public_success = publicPhotos => {
   };
 };
 
+const unmakePublic_start = () => {
+  return {
+    type: actionTypes.UNMAKE_PUBLIC_START
+  };
+};
+
+const unmakePublic_fail = () => {
+  return {
+    type: actionTypes.UNMAKE_PUBLIC_FAIL
+  };
+};
+
+const unmakePublic_success = updatedList => {
+  return {
+    type: actionTypes.UNMAKE_PUBLIC_SUCCESS,
+    payload: updatedList
+  };
+};
+
 export const load_images = () => {
   return dispatch => {
     dispatch(load_images_start());
@@ -126,6 +145,29 @@ export const make_public = (photoId, photoName) => {
         .catch(err => {
           console.log(err);
           dispatch(make_public_fail());
+        });
+    }
+  };
+};
+
+export const unmakePublic = photoId => {
+  return dispatch => {
+    if (window.confirm("Are you sure? Hide photo from pubic?")) {
+      dispatch(unmakePublic_start());
+      axios({
+        method: "delete",
+        url: api_routes.makePublic + `photoId=${photoId}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.jwtToken
+        }
+      })
+        .then(res => {
+          console.log(res.data);
+          dispatch(unmakePublic_success(res.data));
+        })
+        .catch(err => {
+          console.log(err);
+          dispatch(unmakePublic_fail());
         });
     }
   };

@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_IMAGES_START:
     case actionTypes.UPLOAD_IMAGE:
     case actionTypes.MAKE_PUBLIC_START:
+    case actionTypes.UNMAKE_PUBLIC_START:
       return {
         ...state,
         loading: true
@@ -18,6 +19,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_IMAGES_FAIL:
     case actionTypes.UPLOAD_IMAGE_FAIL:
     case actionTypes.MAKE_PUBLIC_FAIL:
+    case actionTypes.UNMAKE_PUBLIC_FAIL:
       return {
         ...state,
         loading: false
@@ -36,6 +38,12 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.MAKE_PUBLIC_SUCCESS:
       //console.log(action.payload.data);
+      return {
+        ...state,
+        loading: false,
+        showcase: action.payload
+      };
+    case actionTypes.UNMAKE_PUBLIC_SUCCESS:
       return {
         ...state,
         loading: false,

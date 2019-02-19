@@ -1,7 +1,7 @@
 import React from "react";
 import api_routes from "../../api_routes/routes";
 import { connect } from "react-redux";
-import { make_public } from "../../store/actions/files";
+import { make_public, unmakePublic } from "../../store/actions/files";
 /*global localStorage */
 
 const Photo = props => {
@@ -26,7 +26,11 @@ const Photo = props => {
       >
         Make Public
       </button>
-      <button type="button" className="btn btn-danger">
+      <button
+        onClick={() => props.unpublicPhoto(props.id)}
+        type="button"
+        className="btn btn-danger"
+      >
         Hide
       </button>
     </div>
@@ -36,7 +40,8 @@ const Photo = props => {
 const mapDispatchToProps = dispatch => {
   return {
     publicPhoto: (photoId, photoName) =>
-      dispatch(make_public(photoId, photoName))
+      dispatch(make_public(photoId, photoName)),
+    unpublicPhoto: photoId => dispatch(unmakePublic(photoId))
   };
 };
 
