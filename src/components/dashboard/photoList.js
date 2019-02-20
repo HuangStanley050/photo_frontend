@@ -3,7 +3,8 @@ import Photo from "./photo";
 
 const PhotoList = props => {
   let content;
-
+  let showcase = props.publicphotos;
+  //console.log(showcase);
   content = (
     <div className="row">
       {props.photos.map(photo => {
@@ -12,7 +13,11 @@ const PhotoList = props => {
             key={photo.photoId}
             name={photo.photoName}
             id={photo.photoId}
-            isPublic={false}
+            isPublic={
+              showcase.find(showphoto => showphoto.photoId === photo.photoId)
+                ? true
+                : false
+            }
           />
         );
       })}

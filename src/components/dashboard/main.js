@@ -21,7 +21,11 @@ const Main = props => {
       </div>
       <UpLoadForm />
       {props.photos.length === 0 ? noPhotos : null}
-      {props.loading ? <Spinner /> : <PhotoList photos={props.photos} />}
+      {props.loading ? (
+        <Spinner />
+      ) : (
+        <PhotoList photos={props.photos} publicphotos={props.publicphotos} />
+      )}
     </div>
   );
 };
@@ -35,6 +39,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     photos: state.file.photos,
+    publicphotos: state.file.showcase,
     loading: state.file.loading,
     username: state.auth.userInfo.name,
     auth: state.auth

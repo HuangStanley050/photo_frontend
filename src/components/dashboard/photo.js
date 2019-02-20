@@ -14,12 +14,12 @@ const Photo = props => {
     borderWidth: "thick",
     borderColor: "blue"
   };
-
+  //console.log(props.isPublic);
   return (
     <div className="col-md-3">
       <div className="thumbnail">
         <img
-          style={privateStyle}
+          style={props.isPublic ? publicStyle : privateStyle}
           className="img-thumbnail"
           src={
             api_routes.loadImage +
