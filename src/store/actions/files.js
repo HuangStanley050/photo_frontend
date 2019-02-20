@@ -92,8 +92,12 @@ export const load_images = () => {
       }
     })
       .then(res => {
-        dispatch(load_images_success(res.data));
         //console.log(res.data);
+        dispatch(load_images_success(res.data.photos));
+        dispatch({
+          type: actionTypes.LOAD_PUBLIC_IMAGES_SUCCESS,
+          payload: res.data.publicPhotos
+        });
       })
       .catch(err => {
         console.log(err);
@@ -171,4 +175,8 @@ export const unmakePublic = photoId => {
         });
     }
   };
+};
+
+export const checkPublicPhotos = () => {
+  return dispatch => {};
 };

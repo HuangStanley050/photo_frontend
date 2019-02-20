@@ -12,6 +12,7 @@ const PhotoList = props => {
             key={photo.photoId}
             name={photo.photoName}
             id={photo.photoId}
+            isPublic={false}
           />
         );
       })}
@@ -21,9 +22,9 @@ const PhotoList = props => {
   return content;
 };
 
-// const mapStateToProps = state => {
+// const mapDispatchToProps = dispatch => {
 //   return {
-//     loadingStatus: state.file.loading
+//     loadPublic: () => dispatch(checkPublicPhotos())
 //   };
 // };
 

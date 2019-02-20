@@ -30,6 +30,11 @@ const reducer = (state = initialState, action) => {
         loading: false,
         photos: [...action.payload]
       };
+    case actionTypes.LOAD_PUBLIC_IMAGES_SUCCESS:
+      return {
+        ...state,
+        showcase: action.payload
+      };
     case actionTypes.UPLOAD_IMAGE_SUCCESS:
       return {
         ...state,

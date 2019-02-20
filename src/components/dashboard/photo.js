@@ -5,10 +5,21 @@ import { make_public, unmakePublic } from "../../store/actions/files";
 /*global localStorage */
 
 const Photo = props => {
+  const privateStyle = {
+    borderWidth: "thick",
+    borderColor: "red"
+  };
+
+  const publicStyle = {
+    borderWidth: "thick",
+    borderColor: "blue"
+  };
+
   return (
     <div className="col-md-3">
       <div className="thumbnail">
         <img
+          style={privateStyle}
           className="img-thumbnail"
           src={
             api_routes.loadImage +
