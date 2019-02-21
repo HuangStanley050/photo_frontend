@@ -145,10 +145,16 @@ export const make_public = (photoId, photoName) => {
         .then(res => {
           //console.log(res.data.showCase);
           dispatch(make_public_success(res.data.showCase));
+          dispatch({ type: actionTypes.CLEAR_ERROR });
         })
         .catch(err => {
-          console.log(err);
+          const error = {
+            type: "file",
+            message: err.response.data.message
+          };
+          //console.log(err.response.data.message);
           dispatch(make_public_fail());
+          dispatch({ type: actionTypes.ERROR, payload: error });
         });
     }
   };
@@ -166,12 +172,18 @@ export const unmakePublic = photoId => {
         }
       })
         .then(res => {
-          console.log(res.data);
+          //console.log(res.data);
           dispatch(unmakePublic_success(res.data));
+          dispatch({ type: actionTypes.CLEAR_ERROR });
         })
         .catch(err => {
-          console.log(err);
+          //console.log(err);
+          const error = {
+            type: "file",
+            message: err.response.data.message
+          };
           dispatch(unmakePublic_fail());
+          dispatch({ type: actionTypes.ERROR, payload: error });
         });
     }
   };
