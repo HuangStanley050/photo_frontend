@@ -1,12 +1,13 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   error: null,
-  type: ""
+  type: "",
+  photoId: ""
 };
 
 const reducer = (state = initialState, action) => {
   if (action.type === actionTypes.ERROR) {
-    console.log(action.payload);
+    //console.log(action.payload);
     return {
       ...state,
       error: action.payload.message,
@@ -17,7 +18,16 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       error: null,
-      type: ""
+      type: "",
+      photoId: ""
+    };
+  }
+  if (action.type === actionTypes.MAKE_PUBLIC_ERROR) {
+    return {
+      ...state,
+      error: action.payload.message,
+      type: action.payload.type,
+      photoId: action.payload.photoId
     };
   }
 

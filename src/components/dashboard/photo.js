@@ -14,7 +14,8 @@ const Photo = props => {
     borderWidth: "thick",
     borderColor: "blue"
   };
-  //console.log(props.isPublic);
+
+  console.log(props.error);
   return (
     <div className="col-md-3">
       <div className="thumbnail">
@@ -44,6 +45,7 @@ const Photo = props => {
       >
         Hide
       </button>
+      <h5 style={{ color: "red" }}>{props.error ? props.error.error : null}</h5>
     </div>
   );
 };
@@ -55,6 +57,12 @@ const mapDispatchToProps = dispatch => {
     unpublicPhoto: photoId => dispatch(unmakePublic(photoId))
   };
 };
+
+// const mapStateToProps = state => {
+//   return {
+//     error: state.error.error
+//   };
+// };
 
 export default connect(
   null,

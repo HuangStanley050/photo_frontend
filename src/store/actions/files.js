@@ -130,9 +130,16 @@ export const upload_image = imageData => {
 };
 
 export const make_public = (photoId, photoName) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     if (window.confirm("Are you sure? Making photo pubic?")) {
-      //console.log(photoId, photoName);
+      //check to see if the photo is already in public collection
+
+      // let showcase = getState().file.showcase;
+
+      // if (showcase.find(photo => photo.photoId === photoId)) {
+      //   console.log("photo is already in public ", photoId);
+      // }
+
       dispatch(make_public_start());
       axios({
         method: "post",
@@ -150,11 +157,12 @@ export const make_public = (photoId, photoName) => {
         .catch(err => {
           const error = {
             type: "file",
-            message: err.response.data.message
+            message: err.response.data.message,
+            photoId: err.response.data.data
           };
-          //console.log(err.response.data.message);
+          console.log(err.response.data);
           dispatch(make_public_fail());
-          dispatch({ type: actionTypes.ERROR, payload: error });
+          dispatch({ type: actionTypes.MAKE_PUBLIC_ERROR, payload: error });
         });
     }
   };
