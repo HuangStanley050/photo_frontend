@@ -132,14 +132,6 @@ export const upload_image = imageData => {
 export const make_public = (photoId, photoName) => {
   return dispatch => {
     if (window.confirm("Are you sure? Making photo pubic?")) {
-      //check to see if the photo is already in public collection
-
-      // let showcase = getState().file.showcase;
-
-      // if (showcase.find(photo => photo.photoId === photoId)) {
-      //   console.log("photo is already in public ", photoId);
-      // }
-
       dispatch(make_public_start());
       axios({
         method: "post",
