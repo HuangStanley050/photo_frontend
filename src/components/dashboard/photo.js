@@ -15,7 +15,7 @@ const Photo = props => {
     borderColor: "blue"
   };
 
-  console.log(props.error);
+  //console.log(props.error);
   return (
     <div className="col-md-3">
       <div className="thumbnail">

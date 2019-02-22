@@ -130,7 +130,7 @@ export const upload_image = imageData => {
 };
 
 export const make_public = (photoId, photoName) => {
-  return (dispatch, getState) => {
+  return dispatch => {
     if (window.confirm("Are you sure? Making photo pubic?")) {
       //check to see if the photo is already in public collection
 
@@ -188,10 +188,12 @@ export const unmakePublic = photoId => {
           //console.log(err);
           const error = {
             type: "file",
-            message: err.response.data.message
+            message: err.response.data.message,
+            photoId: err.response.data.data
           };
           dispatch(unmakePublic_fail());
-          dispatch({ type: actionTypes.ERROR, payload: error });
+          // dispatch({ type: actionTypes.ERROR, payload: error });
+          dispatch({ type: actionTypes.MAKE_PUBLIC_ERROR, payload: error });
         });
     }
   };
