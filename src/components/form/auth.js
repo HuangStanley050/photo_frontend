@@ -57,9 +57,20 @@ const AuthForm = props => {
 
   if (props.errorType === "register" && props.isRegister) {
     //don't show the registration error on login page
+    console.log(props.errorMsg);
+    let error_string = [];
+
+    for (let i in props.errorMsg) {
+      error_string.push(
+        <h5 key={i} style={{ color: "blue" }}>
+          {" " + i.toString() + " ==>" + props.errorMsg[i]}
+        </h5>
+      );
+    }
+
     errorMessage = (
       <div>
-        <h3 style={{ color: "red" }}>Registration error:{props.errorMsg}</h3>
+        <h4 style={{ color: "red" }}>Registration error:{error_string}</h4>
       </div>
     );
   }
@@ -68,7 +79,7 @@ const AuthForm = props => {
     //don't show the login error on register page
     errorMessage = (
       <div>
-        <h3 style={{ color: "red" }}>Login error:{props.errorMsg}</h3>
+        <h4 style={{ color: "red" }}>Login error:{props.errorMsg}</h4>
       </div>
     );
   }

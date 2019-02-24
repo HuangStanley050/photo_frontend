@@ -96,10 +96,15 @@ export const register = userData => {
         dispatch({ type: actionTypes.CLEAR_ERROR });
       })
       .catch(err => {
-        console.log(err.message);
+        let error_message = {};
+
+        for (let i of err.response.data.errors) {
+          error_message[i.param] = i.msg;
+        }
+
         dispatch(register_fail());
         const error = {
-          message: err.response.data.message,
+          message: error_message,
           type: "register"
         };
         dispatch(errorMsg(error));
