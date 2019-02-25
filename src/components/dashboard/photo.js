@@ -23,10 +23,7 @@ const Photo = props => {
           style={props.isPublic ? publicStyle : privateStyle}
           className="img-thumbnail"
           src={
-            api_routes.loadImage +
-            props.name +
-            "?token=" +
-            localStorage.jwtToken
+            api_routes.loadImage + props.id + "?token=" + localStorage.jwtToken
           }
         />
       </div>
