@@ -8,11 +8,20 @@ const MainShowCase = props => {
   useEffect(() => {
     props.load();
   }, []);
+
+  let viewPortCenter = {
+    position: "relative",
+
+    top: "90%",
+    left: "0",
+    transform: "translateY(+30vh)"
+  };
+
   let content;
 
   if (props.loading) {
     content = (
-      <div style={{ marginTop: "20px" }}>
+      <div style={viewPortCenter}>
         <Spinner />
       </div>
     );

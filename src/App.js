@@ -36,14 +36,4 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     auth: state.auth,
-//     file: state.file,
-//     error: state.error
-//   };
-// };
-
-// export default withRouter(connect(mapStateToProps)(App));
-
 export default App;
