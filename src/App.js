@@ -6,6 +6,7 @@ import Navbar from "./components/navigation/navigation";
 import { Route, Switch } from "react-router-dom";
 import AuthForm from "./components/form/auth";
 import Main from "./components/dashboard/main";
+import MainShowCase from "./components/showcase/mainshowcase";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
       <div>
         <Navbar />
         <Switch>
+          <Route path="/showcase" component={MainShowCase} />
           <Route
             path="/register"
             render={props => (
