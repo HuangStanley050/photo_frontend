@@ -8,10 +8,6 @@ const AuthForm = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // useEffect(() => {
-  //   props.clear_error();
-  // }, []);
-
   const inputHandler = e => {
     switch (e.target.id) {
       case "name":

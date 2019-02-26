@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
 import AuthForm from "./components/form/auth";
 import Main from "./components/dashboard/main";
 import MainShowCase from "./components/showcase/mainshowcase";
+import PageNotFound from "./components/notfound/404";
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
             )}
           />
           <Route path="/main" component={Main} />
+          <Route component={PageNotFound} />
         </Switch>
       </div>
     );
