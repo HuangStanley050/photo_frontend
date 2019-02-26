@@ -10,7 +10,9 @@ const routes = {
   uploadImage:
     "https://webdevpractice-infamousgodhand.c9users.io:8081/api/upload",
   makePublic:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/image/public?"
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/image/public?",
+  loadPublic:
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/images/public"
 };
 
 export default routes;

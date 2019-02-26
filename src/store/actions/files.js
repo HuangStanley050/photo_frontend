@@ -191,6 +191,21 @@ export const unmakePublic = photoId => {
   };
 };
 
-export const checkPublicPhotos = () => {
-  return dispatch => {};
+export const load_PublicPhotos = () => {
+  return dispatch => {
+    dispatch({ type: actionTypes.LOAD_PUBLIC_PHOTOS_START });
+    axios
+      .get(api_routes.loadPublic)
+      .then(res => {
+        console.log(res);
+        dispatch({
+          type: actionTypes.LOAD_PUBLIC_PHOTOS_SUCCESS,
+          payload: res.data.result
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: actionTypes.LOAD_PUBLIC_PHOTOS_FAIL });
+      });
+  };
 };

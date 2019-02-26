@@ -3,7 +3,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   loading: false,
   photos: [],
-  showcase: []
+  showcase: [],
+  publicphotos: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +13,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPLOAD_IMAGE:
     case actionTypes.MAKE_PUBLIC_START:
     case actionTypes.UNMAKE_PUBLIC_START:
+    case actionTypes.LOAD_PUBLIC_PHOTOS_START:
       return {
         ...state,
         loading: true
@@ -20,6 +22,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPLOAD_IMAGE_FAIL:
     case actionTypes.MAKE_PUBLIC_FAIL:
     case actionTypes.UNMAKE_PUBLIC_FAIL:
+    case actionTypes.LOAD_PUBLIC_PHOTOS_FAIL:
       return {
         ...state,
         loading: false
@@ -53,6 +56,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         showcase: action.payload
+      };
+    case actionTypes.LOAD_PUBLIC_PHOTOS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        publicphotos: action.payload
       };
     case actionTypes.LOGIN_FAIL:
       return {
