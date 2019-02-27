@@ -41,7 +41,7 @@ const Navbar = props => {
       className="navbar navbar-expand-lg navbar-dark"
     >
       <NavLink className="navbar-brand" to="/">
-        Photo ShowCase
+        Photo ShowCase <i className="far fa-copyright" />
       </NavLink>
       <button
         className="navbar-toggler"

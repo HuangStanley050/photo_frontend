@@ -31,12 +31,6 @@ const PhotoList = props => {
   return content;
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loadPublic: () => dispatch(checkPublicPhotos())
-//   };
-// };
-
 const mapStateToProps = state => {
   return {
     error: state.error

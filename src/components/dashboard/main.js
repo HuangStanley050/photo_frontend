@@ -4,6 +4,7 @@ import { load_images } from "../../store/actions/files";
 import PhotoList from "./photoList";
 import Spinner from "../spinner/spinner";
 import UpLoadForm from "../form/upload";
+import BackDrop from "../modal/backdrop";
 
 const Main = props => {
   useEffect(() => {
@@ -20,6 +21,7 @@ const Main = props => {
         <h1 className="text-center">Main Dash for {props.username}</h1>
       </div>
       <UpLoadForm />
+      {props.loading ? <BackDrop /> : null}
       {props.photos.length === 0 ? noPhotos : null}
       {props.loading ? (
         <Spinner />
