@@ -11,7 +11,6 @@ const MainShowCase = props => {
 
   let viewPortCenter = {
     position: "relative",
-
     top: "90%",
     left: "0",
     transform: "translateY(+30vh)"

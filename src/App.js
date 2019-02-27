@@ -8,6 +8,7 @@ import AuthForm from "./components/form/auth";
 import Main from "./components/dashboard/main";
 import MainShowCase from "./components/showcase/mainshowcase";
 import PageNotFound from "./components/notfound/404";
+import Landing from "./components/landing/landing";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       <div>
         <Navbar />
         <Switch>
+          <Route exact path="/" component={Landing} />
           <Route path="/showcase" component={MainShowCase} />
           <Route
             path="/register"

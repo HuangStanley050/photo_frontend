@@ -8,13 +8,13 @@ const Navbar = props => {
     <React.Fragment>
       <li className="nav-item">
         <NavLink className="nav-link" to="/register">
-          Register
+          <i className="fas fa-registered" /> Register
         </NavLink>
       </li>
 
       <li className="nav-item">
         <NavLink className="nav-link" to="/login">
-          Login
+          <i className="fas fa-sign-in-alt" /> Login
         </NavLink>
       </li>
     </React.Fragment>
@@ -59,7 +59,7 @@ const Navbar = props => {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <NavLink className="nav-link" to="/showcase">
-              Public
+              <i className="fas fa-image" /> Public
             </NavLink>
           </li>
           {props.auth.isAuthenticate ? Authed : NotAuthed}
