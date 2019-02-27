@@ -3,6 +3,7 @@ import ShowCaseList from "./showcaselist";
 import { connect } from "react-redux";
 import { load_PublicPhotos } from "../../store/actions/files";
 import Spinner from "../spinner/spinner";
+import BackDrop from "../modal/backdrop";
 
 const MainShowCase = props => {
   useEffect(() => {
@@ -13,7 +14,8 @@ const MainShowCase = props => {
     position: "relative",
     top: "90%",
     left: "0",
-    transform: "translateY(+30vh)"
+    transform: "translateY(+30vh)",
+    zIndex: "6"
   };
 
   let content;
@@ -29,6 +31,7 @@ const MainShowCase = props => {
   }
   return (
     <div style={{ marginTop: "2.5rem" }} className="container">
+      {props.loading ? <BackDrop /> : null}
       {content}
     </div>
   );
