@@ -1,21 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../../store/actions/auth";
 
 const Navbar = props => {
   const NotAuthed = (
     <React.Fragment>
       <li className="nav-item">
-        <NavLink className="nav-link" to="/register">
+        <Link className="nav-link" to="/register">
           <i className="fas fa-registered" /> Register
-        </NavLink>
+        </Link>
       </li>
 
       <li className="nav-item">
-        <NavLink className="nav-link" to="/login">
+        <Link className="nav-link" to="/login">
           <i className="fas fa-sign-in-alt" /> Login
-        </NavLink>
+        </Link>
       </li>
     </React.Fragment>
   );
@@ -23,9 +23,9 @@ const Navbar = props => {
   const Authed = (
     <React.Fragment>
       <li className="nav-item active">
-        <NavLink className="nav-link" to="/main">
+        <Link className="nav-link" to="/main">
           DashBoard <span className="sr-only">(current)</span>
-        </NavLink>
+        </Link>
       </li>
       <li className="nav-item">
         <a onClick={props.logout} className="nav-link" href="#">
@@ -40,9 +40,9 @@ const Navbar = props => {
       style={{ padding: "1rem", backgroundColor: "#0b3c8c" }}
       className="navbar navbar-expand-lg navbar-dark"
     >
-      <NavLink className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/">
         Photo ShowCase <i className="far fa-copyright" />
-      </NavLink>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -58,9 +58,9 @@ const Navbar = props => {
       <div className="collapse navbar-collapse" id="navbarColor01">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/showcase">
+            <Link className="nav-link" to="/showcase">
               <i className="fas fa-image" /> Public
-            </NavLink>
+            </Link>
           </li>
           {props.auth.isAuthenticate ? Authed : NotAuthed}
         </ul>
