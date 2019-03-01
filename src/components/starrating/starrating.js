@@ -11,10 +11,8 @@ const StarRating = props => {
       case "star1":
         if (star1 !== null) {
           setStar1(null);
-          props.set1(false);
         } else {
           setStar1({ color: "orange" });
-          props.set1(true);
         }
         break;
       case "star2":
