@@ -9,43 +9,43 @@ const StarRating = props => {
   const add_or_remove = star => {
     switch (star) {
       case "star1":
-        if (props.ratings.length === 0) {
+        if (props.ratings === 0) {
           props.addStar();
           setStar1({ color: "orange" });
         }
-        if (props.ratings.length === 1) {
+        if (props.ratings === 1) {
           props.removeStar();
           setStar1(null);
         }
         break;
       case "star2":
-        if (props.ratings.length === 1) {
+        if (props.ratings === 1) {
           props.addStar();
           setStar2({ color: "orange" });
         }
-        if (props.ratings.length === 2) {
+        if (props.ratings === 2) {
           props.removeStar();
           setStar2(null);
         }
         break;
 
       case "star3":
-        if (props.ratings.length === 2) {
+        if (props.ratings === 2) {
           props.addStar();
           setStar3({ color: "orange" });
         }
-        if (props.ratings.length === 3) {
+        if (props.ratings === 3) {
           props.removeStar();
           setStar3(null);
         }
         break;
 
       case "star4":
-        if (props.ratings.length === 3) {
+        if (props.ratings === 3) {
           props.addStar();
           setStar4({ color: "orange" });
         }
-        if (props.ratings.length === 4) {
+        if (props.ratings === 4) {
           props.removeStar();
           setStar4(null);
         }

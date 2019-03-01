@@ -4,14 +4,12 @@ import StarRating from "../starrating/starrating";
 import { connect } from "react-redux";
 
 const ShowCase = ({ id, name, auth }) => {
-  const [ratings, setRating] = useState([]);
+  const [ratings, setRating] = useState(0);
   const addRating = () => {
-    setRating([...ratings, true]);
+    setRating(ratings => ratings + 1);
   };
   const popRating = () => {
-    let temp = ratings;
-    temp.pop();
-    setRating([...temp]);
+    setRating(ratings => ratings - 1);
   };
   //console.log(ratings);
   return (
