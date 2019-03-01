@@ -13,14 +13,18 @@ const ShowCase = ({ id, name, auth }) => {
     temp.pop();
     setRating([...temp]);
   };
-  console.log(ratings);
+  //console.log(ratings);
   return (
     <div className="col-md-3">
       <div className="thumbnail">
         <img src={api_routes.loadPublicImage + id} className="img-thumbnail" />
       </div>
       {auth.isAuthenticate ? (
-        <StarRating addStar={addRating} removeStar={popRating} />
+        <StarRating
+          ratings={ratings}
+          addStar={addRating}
+          removeStar={popRating}
+        />
       ) : null}
     </div>
   );

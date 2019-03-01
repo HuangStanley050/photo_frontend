@@ -6,35 +6,70 @@ const StarRating = props => {
   const [star3, setStar3] = useState(null);
   const [star4, setStar4] = useState(null);
 
-  const addStar = e => {
-    switch (e.target.id) {
+  const add_or_remove = star => {
+    switch (star) {
       case "star1":
-        if (star1 !== null) {
-          setStar1(null);
-        } else {
+        if (props.ratings.length === 0) {
+          props.addStar();
           setStar1({ color: "orange" });
+        }
+        if (props.ratings.length === 1) {
+          props.removeStar();
+          setStar1(null);
         }
         break;
       case "star2":
-        if (star2 !== null) {
-          setStar2(null);
-        } else {
+        if (props.ratings.length === 1) {
+          props.addStar();
           setStar2({ color: "orange" });
         }
+        if (props.ratings.length === 2) {
+          props.removeStar();
+          setStar2(null);
+        }
         break;
+
       case "star3":
-        if (star3 !== null) {
-          setStar3(null);
-        } else {
+        if (props.ratings.length === 2) {
+          props.addStar();
           setStar3({ color: "orange" });
         }
+        if (props.ratings.length === 3) {
+          props.removeStar();
+          setStar3(null);
+        }
         break;
+
       case "star4":
-        if (star4 !== null) {
-          setStar4(null);
-        } else {
+        if (props.ratings.length === 3) {
+          props.addStar();
           setStar4({ color: "orange" });
         }
+        if (props.ratings.length === 4) {
+          props.removeStar();
+          setStar4(null);
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const addStar = e => {
+    switch (e.target.id) {
+      case "star1":
+        add_or_remove("star1");
+
+        break;
+      case "star2":
+        add_or_remove("star2");
+        break;
+      case "star3":
+        add_or_remove("star3");
+        break;
+      case "star4":
+        add_or_remove("star4");
         break;
       default:
         break;
