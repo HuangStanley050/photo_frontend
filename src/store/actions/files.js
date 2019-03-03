@@ -197,7 +197,7 @@ export const load_PublicPhotos = () => {
     axios
       .get(api_routes.loadPublic)
       .then(res => {
-        console.log(res);
+        //console.log(res);
         dispatch({
           type: actionTypes.LOAD_PUBLIC_PHOTOS_SUCCESS,
           payload: res.data.result
@@ -207,5 +207,11 @@ export const load_PublicPhotos = () => {
         console.log(err);
         dispatch({ type: actionTypes.LOAD_PUBLIC_PHOTOS_FAIL });
       });
+  };
+};
+
+export const review_photo = data => {
+  return dispatch => {
+    console.log(data);
   };
 };
