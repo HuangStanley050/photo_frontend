@@ -212,6 +212,22 @@ export const load_PublicPhotos = () => {
 
 export const review_photo = data => {
   return dispatch => {
-    console.log(data);
+    dispatch({ type: actionTypes.REVIEW_PHOTO_START });
+    axios({
+      method: "post",
+      url: api_routes.ratePhoto + `${data.photoId}`,
+      data: data,
+      headers: {
+        Authorization: "Bearer " + localStorage.jwtToken
+      }
+    })
+      .then(res => {
+        dispatch({ type: actionTypes.REVIEW_PHOTO_SUCCESS });
+        console.log(res);
+      })
+      .catch(err => {
+        dispatch({ type: actionTypes.REVIEW_PHOTO_FAIL });
+        console.log(err);
+      });
   };
 };

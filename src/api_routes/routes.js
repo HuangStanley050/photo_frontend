@@ -14,7 +14,9 @@ const routes = {
   loadPublic:
     "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/images/public",
   loadPublicImage:
-    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/publicImage/"
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/publicImage/",
+  ratePhoto:
+    "https://webdevpractice-infamousgodhand.c9users.io:8081/api/files/rate/"
 };
 
 export default routes;

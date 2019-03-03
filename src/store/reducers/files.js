@@ -14,6 +14,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.MAKE_PUBLIC_START:
     case actionTypes.UNMAKE_PUBLIC_START:
     case actionTypes.LOAD_PUBLIC_PHOTOS_START:
+    case actionTypes.REVIEW_PHOTO_START:
       return {
         ...state,
         loading: true
@@ -23,6 +24,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.MAKE_PUBLIC_FAIL:
     case actionTypes.UNMAKE_PUBLIC_FAIL:
     case actionTypes.LOAD_PUBLIC_PHOTOS_FAIL:
+    case actionTypes.REVIEW_PHOTO_FAIL:
       return {
         ...state,
         loading: false
@@ -62,6 +64,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         publicphotos: action.payload
+      };
+    case actionTypes.REVIEW_PHOTO_SUCCESS:
+      return {
+        ...state,
+        loading: false
       };
     case actionTypes.LOGIN_FAIL:
       return {
