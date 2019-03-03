@@ -6,49 +6,46 @@ const StarRating = props => {
   const [star3, setStar3] = useState(null);
   const [star4, setStar4] = useState(null);
 
+  const highlight = { color: "orange" };
+
   const add_or_remove = star => {
     switch (star) {
       case "star1":
-        if (props.ratings === 0) {
-          props.addStar();
-          setStar1({ color: "orange" });
-        }
-        if (props.ratings === 1) {
-          props.removeStar();
-          setStar1(null);
+        props.addStar(1);
+        setStar1(highlight);
+        if (props.ratings === 2 || props.ratings === 3 || props.ratings === 4) {
+          setStar2(null);
+          setStar3(null);
+          setStar4(null);
         }
         break;
       case "star2":
-        if (props.ratings === 1) {
-          props.addStar();
-          setStar2({ color: "orange" });
+        props.addStar(2);
+        setStar1(highlight);
+        setStar2(highlight);
+        if (props.ratings === 3 || props.ratings === 4) {
+          setStar3(null);
+          setStar4(null);
         }
-        if (props.ratings === 2) {
-          props.removeStar();
-          setStar2(null);
-        }
+
         break;
 
       case "star3":
-        if (props.ratings === 2) {
-          props.addStar();
-          setStar3({ color: "orange" });
-        }
-        if (props.ratings === 3) {
-          props.removeStar();
-          setStar3(null);
+        props.addStar(3);
+        setStar1(highlight);
+        setStar2(highlight);
+        setStar3(highlight);
+        if (props.ratings === 4) {
+          setStar4(null);
         }
         break;
 
       case "star4":
-        if (props.ratings === 3) {
-          props.addStar();
-          setStar4({ color: "orange" });
-        }
-        if (props.ratings === 4) {
-          props.removeStar();
-          setStar4(null);
-        }
+        props.addStar(4);
+        setStar1(highlight);
+        setStar2(highlight);
+        setStar3(highlight);
+        setStar4(highlight);
         break;
 
       default:
@@ -64,12 +61,15 @@ const StarRating = props => {
         break;
       case "star2":
         add_or_remove("star2");
+
         break;
       case "star3":
         add_or_remove("star3");
+
         break;
       case "star4":
         add_or_remove("star4");
+
         break;
       default:
         break;

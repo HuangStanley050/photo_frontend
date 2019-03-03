@@ -5,24 +5,17 @@ import { connect } from "react-redux";
 
 const ShowCase = ({ id, name, auth }) => {
   const [ratings, setRating] = useState(0);
-  const addRating = () => {
-    setRating(ratings => ratings + 1);
+  const addRating = ratings => {
+    setRating(ratings);
   };
-  const popRating = () => {
-    setRating(ratings => ratings - 1);
-  };
-  //console.log(ratings);
+
   return (
     <div className="col-md-3">
       <div className="thumbnail">
         <img src={api_routes.loadPublicImage + id} className="img-thumbnail" />
       </div>
       {auth.isAuthenticate ? (
-        <StarRating
-          ratings={ratings}
-          addStar={addRating}
-          removeStar={popRating}
-        />
+        <StarRating ratings={ratings} addStar={addRating} />
       ) : null}
     </div>
   );
