@@ -4,7 +4,7 @@ import StarRating from "../starrating/starrating";
 import { review_photo } from "../../store/actions/files";
 import { connect } from "react-redux";
 
-const ShowCase = ({ id, name, auth, review }) => {
+const ShowCase = ({ id, name, auth, review, error }) => {
   const [ratings, setRating] = useState(0);
   const addRating = ratings => {
     setRating(ratings);
@@ -20,6 +20,8 @@ const ShowCase = ({ id, name, auth, review }) => {
     review(data);
   };
 
+  //const errorMsg = null;
+
   return (
     <div className="col-md-3">
       <div className="thumbnail">
@@ -31,6 +33,7 @@ const ShowCase = ({ id, name, auth, review }) => {
           <button onClick={submit_review} className="btn btn-info">
             Submit Review
           </button>
+          {error ? <h5 style={{ color: "red" }}>{error.error}</h5> : null}
         </React.Fragment>
       ) : null}
     </div>

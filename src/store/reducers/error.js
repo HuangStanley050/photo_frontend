@@ -30,6 +30,14 @@ const reducer = (state = initialState, action) => {
       photoId: action.payload.photoId
     };
   }
+  if (action.type === actionTypes.REVIEW_PHOTO_ERROR) {
+    return {
+      ...state,
+      error: action.payload.message,
+      type: action.payload.type,
+      photoId: action.payload.photoId
+    };
+  }
 
   return state;
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import ShowCase from "./showcase";
+import { connect } from "react-redux";
 
 const ShowCaseList = props => {
   return (
@@ -10,6 +11,7 @@ const ShowCaseList = props => {
             key={photo.photoId}
             id={photo.photoId}
             name={photo.photoName}
+            error={props.error.photoId === photo.photoId ? props.error : null}
           />
         );
       })}
@@ -17,4 +19,10 @@ const ShowCaseList = props => {
   );
 };
 
-export default ShowCaseList;
+const mapStateToProps = state => {
+  return {
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps)(ShowCaseList);

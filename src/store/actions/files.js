@@ -223,11 +223,23 @@ export const review_photo = data => {
     })
       .then(res => {
         dispatch({ type: actionTypes.REVIEW_PHOTO_SUCCESS });
-        console.log(res);
+        //console.log(res);
+        dispatch({ type: actionTypes.CLEAR_ERROR });
       })
       .catch(err => {
-        dispatch({ type: actionTypes.REVIEW_PHOTO_FAIL });
-        console.log(err);
+        const error = {
+          type: "file",
+          message: err.response.data.message,
+          photoId: err.response.data.data
+        };
+        dispatch({
+          type: actionTypes.REVIEW_PHOTO_FAIL
+        });
+        dispatch({
+          type: actionTypes.REVIEW_PHOTO_ERROR,
+          payload: error
+        });
+        //console.log(err.response.data.message);
       });
   };
 };
