@@ -27,7 +27,12 @@ const MainShowCase = props => {
       </div>
     );
   } else {
-    content = <ShowCaseList publicphotos={props.publicphotos} />;
+    content = (
+      <ShowCaseList
+        publicphotos={props.publicphotos}
+        reviewedPhotos={props.ratedPhotos}
+      />
+    );
   }
   return (
     <div style={{ marginTop: "2.5rem" }} className="container">
@@ -46,7 +51,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     loading: state.file.loading,
-    publicphotos: state.file.publicphotos
+    publicphotos: state.file.publicphotos,
+    ratedPhotos: state.file.ratedPublicPhotos
   };
 };
 

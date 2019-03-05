@@ -12,6 +12,11 @@ const ShowCaseList = props => {
             id={photo.photoId}
             name={photo.photoName}
             error={props.error.photoId === photo.photoId ? props.error : null}
+            reviewed={
+              props.reviewedPhotos.find(rate => rate.id === photo.photoId)
+                ? true
+                : false
+            }
           />
         );
       })}

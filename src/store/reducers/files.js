@@ -4,7 +4,8 @@ const initialState = {
   loading: false,
   photos: [],
   showcase: [],
-  publicphotos: []
+  publicphotos: [],
+  ratedPublicPhotos: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +40,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showcase: action.payload
+      };
+    case actionTypes.LOAD_RATED_PHOTOS_SUCCESS:
+      return {
+        ...state,
+        ratedPublicPhotos: action.payload
       };
     case actionTypes.UPLOAD_IMAGE_SUCCESS:
       return {

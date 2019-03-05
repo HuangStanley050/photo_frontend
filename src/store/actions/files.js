@@ -197,10 +197,14 @@ export const load_PublicPhotos = () => {
     axios
       .get(api_routes.loadPublic)
       .then(res => {
-        //console.log(res);
+        //console.log(res.data.photosRated);
         dispatch({
           type: actionTypes.LOAD_PUBLIC_PHOTOS_SUCCESS,
           payload: res.data.result
+        });
+        dispatch({
+          type: actionTypes.LOAD_RATED_PHOTOS_SUCCESS,
+          payload: res.data.photosRated
         });
       })
       .catch(err => {

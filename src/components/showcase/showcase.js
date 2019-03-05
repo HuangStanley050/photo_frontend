@@ -4,7 +4,7 @@ import StarRating from "../starrating/starrating";
 import { review_photo } from "../../store/actions/files";
 import { connect } from "react-redux";
 
-const ShowCase = ({ id, name, auth, review, error }) => {
+const ShowCase = ({ id, name, auth, review, error, reviewed }) => {
   const [ratings, setRating] = useState(0);
   const addRating = ratings => {
     setRating(ratings);
@@ -34,6 +34,7 @@ const ShowCase = ({ id, name, auth, review, error }) => {
             Submit Review
           </button>
           {error ? <h5 style={{ color: "red" }}>{error.error}</h5> : null}
+          {reviewed ? <h5>Reviewed</h5> : null}
         </React.Fragment>
       ) : null}
     </div>
