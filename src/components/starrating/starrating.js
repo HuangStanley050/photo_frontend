@@ -79,28 +79,40 @@ const StarRating = props => {
 
   let reviewers = [];
   let rating = null;
+  let starContents = (
+    <React.Fragment>
+      <i id="star1" onClick={addStar} style={star1} className="fa fa-star" />
+      <i id="star2" onClick={addStar} style={star2} className="fa fa-star" />
+      <i id="star3" onClick={addStar} style={star3} className="fa fa-star " />
+      <i id="star4" onClick={addStar} style={star4} className="fa fa-star" />
+    </React.Fragment>
+  );
 
   if (props.reviewed) {
     props.reviewPhotos.map(photo => {
       if (photo.id === props.reviewed) {
         reviewers = [...photo.reviewers];
       }
+      return null;
     });
   }
 
   reviewers.find(reviewer => {
     if (reviewer.reviewerId === props.currentUser) {
       rating = reviewer.ratings;
+      starContents = [];
+      for (let i = 0; i < rating; i++) {
+        starContents.push(
+          <i key={i} style={highlight} className="fa fa-star" />
+        );
+      }
     }
   });
 
   return (
     <div>
-      <i id="star1" onClick={addStar} style={star1} className="fa fa-star" />
-      <i id="star2" onClick={addStar} style={star2} className="fa fa-star" />
-      <i id="star3" onClick={addStar} style={star3} className="fa fa-star " />
-      <i id="star4" onClick={addStar} style={star4} className="fa fa-star" />
-      {props.reviewed ? <span>reviewed {rating} </span> : null}
+      {starContents}
+      {/*{props.reviewed ? <span>reviewed {rating} </span> : null}*/}
     </div>
   );
 };

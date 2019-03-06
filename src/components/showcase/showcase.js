@@ -34,7 +34,11 @@ const ShowCase = ({ id, name, auth, review, error, file }) => {
             addStar={addRating}
             reviewed={file.find(file => file.id === id) ? id : null}
           />
-          <button onClick={submit_review} className="btn btn-info">
+          <button
+            disabled={file.find(file => file.id === id)}
+            onClick={submit_review}
+            className="btn btn-info"
+          >
             Submit Review
           </button>
           {error ? <h5 style={{ color: "red" }}>{error.error}</h5> : null}
