@@ -4,7 +4,7 @@ import StarRating from "../starrating/starrating";
 import { review_photo } from "../../store/actions/files";
 import { connect } from "react-redux";
 
-const ShowCase = ({ id, name, auth, review, error, reviewed }) => {
+const ShowCase = ({ id, name, auth, review, error, file }) => {
   const [ratings, setRating] = useState(0);
   const addRating = ratings => {
     setRating(ratings);
@@ -29,12 +29,16 @@ const ShowCase = ({ id, name, auth, review, error, reviewed }) => {
       </div>
       {auth.isAuthenticate ? (
         <React.Fragment>
-          <StarRating ratings={ratings} addStar={addRating} />
+          <StarRating
+            ratings={ratings}
+            addStar={addRating}
+            reviewed={file.find(file => file.id === id) ? id : null}
+          />
           <button onClick={submit_review} className="btn btn-info">
             Submit Review
           </button>
           {error ? <h5 style={{ color: "red" }}>{error.error}</h5> : null}
-          {reviewed ? <h5>Reviewed</h5> : null}
+          {/*{file.find(file => file.id === id) ? <h5>Reviewed</h5> : null}*/}
         </React.Fragment>
       ) : null}
     </div>
@@ -43,7 +47,8 @@ const ShowCase = ({ id, name, auth, review, error, reviewed }) => {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    file: state.file.ratedPublicPhotos
   };
 };
 

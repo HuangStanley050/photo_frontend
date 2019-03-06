@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 const StarRating = props => {
   const [star1, setStar1] = useState(null);
@@ -76,14 +77,39 @@ const StarRating = props => {
     }
   };
 
+  let reviewers = [];
+  let rating = null;
+
+  if (props.reviewed) {
+    props.reviewPhotos.map(photo => {
+      if (photo.id === props.reviewed) {
+        reviewers = [...photo.reviewers];
+      }
+    });
+  }
+
+  reviewers.find(reviewer => {
+    if (reviewer.reviewerId === props.currentUser) {
+      rating = reviewer.ratings;
+    }
+  });
+
   return (
     <div>
       <i id="star1" onClick={addStar} style={star1} className="fa fa-star" />
       <i id="star2" onClick={addStar} style={star2} className="fa fa-star" />
       <i id="star3" onClick={addStar} style={star3} className="fa fa-star " />
       <i id="star4" onClick={addStar} style={star4} className="fa fa-star" />
+      {props.reviewed ? <span>reviewed {rating} </span> : null}
     </div>
   );
 };
 
-export default StarRating;
+const mapStateToProps = state => {
+  return {
+    reviewPhotos: state.file.ratedPublicPhotos,
+    currentUser: state.auth.userInfo.id
+  };
+};
+
+export default connect(mapStateToProps)(StarRating);
