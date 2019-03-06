@@ -20,8 +20,6 @@ const ShowCase = ({ id, name, auth, review, error, file }) => {
     review(data);
   };
 
-  //const errorMsg = null;
-
   return (
     <div className="col-md-3">
       <div className="thumbnail">
@@ -35,7 +33,16 @@ const ShowCase = ({ id, name, auth, review, error, file }) => {
             reviewed={file.find(file => file.id === id) ? id : null}
           />
           <button
-            disabled={file.find(file => file.id === id)}
+            disabled={
+              file.find(file => file.id === id) &&
+              file.find(file => {
+                if (file.id == id) {
+                  return file.reviewers.find(
+                    reviewer => reviewer.reviewerId === auth.userInfo.id
+                  );
+                }
+              })
+            }
             onClick={submit_review}
             className="btn btn-info"
           >

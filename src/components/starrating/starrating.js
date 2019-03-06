@@ -103,7 +103,11 @@ const StarRating = props => {
       starContents = [];
       for (let i = 0; i < rating; i++) {
         starContents.push(
-          <i key={i} style={highlight} className="fa fa-star" />
+          <i
+            key={i + reviewer.reviewerId}
+            style={highlight}
+            className="fa fa-star"
+          />
         );
       }
     }
