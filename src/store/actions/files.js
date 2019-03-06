@@ -226,8 +226,11 @@ export const review_photo = data => {
       }
     })
       .then(res => {
-        dispatch({ type: actionTypes.REVIEW_PHOTO_SUCCESS });
-        //console.log(res);
+        dispatch({
+          type: actionTypes.REVIEW_PHOTO_SUCCESS,
+          payload: res.data
+        });
+        //console.log(res.data);
         dispatch({ type: actionTypes.CLEAR_ERROR });
       })
       .catch(err => {

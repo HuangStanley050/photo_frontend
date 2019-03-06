@@ -72,6 +72,7 @@ const reducer = (state = initialState, action) => {
         publicphotos: action.payload
       };
     case actionTypes.REVIEW_PHOTO_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         loading: false
