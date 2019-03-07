@@ -75,7 +75,8 @@ const reducer = (state = initialState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        loading: false
+        loading: false,
+        ratedPublicPhotos: [...action.payload]
       };
     case actionTypes.LOGIN_FAIL:
       return {
